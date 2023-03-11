@@ -1,8 +1,8 @@
 # SDL_BGI Clock with Qurtz like action
 
-In This version of the Clock I am spliting the line drawing for the second hand into n number of frames per second. This gives the second hand a somewhat smooth "Quarts Motion".  
+In This version of the Clock I am spliting the line drawing for the second hand into n number of frames per second. This gives the second hand a somewhat smooth "Quarts Motion". It is currently set at ~60 FPS or 3600 drawing loops per minute. Mathematically this give the second hand 60 drawing possition each second but in practice is rouned to the nearest integer value in screen pixels, meaning that a lower screen resulution and clock face size will draw far less that 60 possitions, but will still draw approximately 60 times per second. I found with my FHD monitor with the 600x600 face size there was little improvement above 40 draws per second.
   
-The rendering timing was a little bit tricky to get correct and is done by testing the loops per second against the timer and adjusting the delay() period to synchronize with each whole second.  
+The rendering timing was a little bit tricky to get correct and is done by testing the loops per minute against the timer and adjusting the delay() period to synchronize with each whole minute. I have done something similar in the Space shooter demo where the FPS is calculated and timming updated every second.
 There **are** other ways to achieve this, but have tried to keep as much as I can within the SDL_Bgi graphics.h library without introducing additional APIs :)
 
 
